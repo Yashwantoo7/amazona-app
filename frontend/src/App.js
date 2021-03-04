@@ -4,7 +4,7 @@ import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
 
 function App() {
-  return (
+  return ( 
     <BrowserRouter>
         <div className="grid-container">
             <header className="row">
@@ -19,9 +19,7 @@ function App() {
             <main>
               <Route path="/product/:id" component={ProductScreen}></Route>
               <Route path="/" component={HomeScreen} exact></Route>
-                
-            </main>
-      
+            </main>      
             <footer className='row center'>
                 All right reserved
             </footer>
