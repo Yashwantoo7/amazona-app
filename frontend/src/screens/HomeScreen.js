@@ -12,7 +12,7 @@ const HomeScreen = () => {
 
     useEffect(() => {
         dispatch(listProducts());
-    }, [])
+    }, [dispatch])
     return (
         <div>
             {
@@ -21,7 +21,7 @@ const HomeScreen = () => {
                 :<div className="row center">
                 {
                 products.map(product=>{
-                    return (
+               return (
                         <Product key={product._id} product={product}/>
                         )
                 })
