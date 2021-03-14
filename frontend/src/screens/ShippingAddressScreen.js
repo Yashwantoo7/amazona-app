@@ -26,6 +26,7 @@ const ShippingAddressScreen = (props) => {
         e.preventDefault();
         //to do dispatch save shipping address action
         dispatch(saveShippingAddress({fullName, address, city, postalCode, country}));
+        console.log(fullName)
         props.history.push('/payment');
     }
     return (
@@ -61,7 +62,7 @@ const ShippingAddressScreen = (props) => {
                         onChange={(e)=>setCountry(e.target.value)} required></input>
                 </div>
                 <div>
-                    <labe/>
+                    <label/>
                     <button className='primary' type='submit'>
                         Continue
                     </button>
