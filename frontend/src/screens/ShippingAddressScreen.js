@@ -37,27 +37,27 @@ const ShippingAddressScreen = (props) => {
                 </div>
                 <div>
                     <label htmlFor='fullName'>Full Name</label>
-                    <input type='text' id='fullName' placeHolder='Enter Full Name' value={fullName}
+                    <input type='text' id='fullName' placeholder='Enter Full Name' value={fullName}
                         onChange={(e)=>setFullName(e.target.value)} required></input>
                 </div>
                 <div>
                     <label htmlFor='address'>Address</label>
-                    <input type='text' id='address' placeHolder='Enter address' value={address}
+                    <input type='text' id='address' placeholder='Enter address' value={address}
                         onChange={(e)=>setAddress(e.target.value)} required></input>
                 </div>
                 <div>
                     <label htmlFor='city'>City</label>
-                    <input type='text' id='city' placeHolder='Enter city' value={city}
+                    <input type='text' id='city' placeholder='Enter city' value={city}
                         onChange={(e)=>setCity(e.target.value)} required></input>
                 </div>
                 <div>
                     <label htmlFor='postalCode'>Postal Code</label>
-                    <input type='text' id='postalCode' placeHolder='Enter postal code' value={postalCode}
+                    <input type='text' id='postalCode' placeholder='Enter postal code' value={postalCode}
                         onChange={(e)=>setPostalCode(e.target.value)} required></input>
                 </div>
                 <div>
                     <label htmlFor='country'>Country</label>
-                    <input type='text' id='country' placeHolder='Enter country' value={country}
+                    <input type='text' id='country' placeholder='Enter country' value={country}
                         onChange={(e)=>setCountry(e.target.value)} required></input>
                 </div>
                 <div>
