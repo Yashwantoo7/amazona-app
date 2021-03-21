@@ -45,7 +45,7 @@ const OrderScreen = (props) => {
                 }
             }
         }
-    },[dispatch, order, sdkReady, orderId]);
+    },[dispatch, order, sdkReady, orderId, successPay]);
 
     const successPaymentHandler = (paymentResult)=>{
         dispatch(payOrder(order, paymentResult));
