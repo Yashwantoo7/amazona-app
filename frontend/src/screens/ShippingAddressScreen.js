@@ -26,7 +26,6 @@ const ShippingAddressScreen = (props) => {
         e.preventDefault();
         //to do dispatch save shipping address action
         dispatch(saveShippingAddress({fullName, address, city, postalCode, country}));
-        console.log(fullName)
         props.history.push('/payment');
     }
     return (
