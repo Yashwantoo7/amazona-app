@@ -42,7 +42,7 @@ const ProductListScreen = (props) => {
             {loading? <LoadingBox></LoadingBox>
             :
             error?<MessageBox variat='danger'>{error}</MessageBox>
-            :
+            :<>
             <table className='table'>
                 <thead>
                     <tr>
@@ -78,6 +78,7 @@ const ProductListScreen = (props) => {
                     ))}
                 </tbody>
             </table>
+            </>
             }
         </div>
     )
