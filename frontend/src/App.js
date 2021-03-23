@@ -10,6 +10,7 @@ import OrderHistoryScreen from './screens/OrderHistoryScreen';
 import OrderScreen from './screens/OrderScreen';
 import PaymentMethodScreen from './screens/PaymentMethodScreen';
 import PlaceOrderScreen from './screens/PlaceOrderScreen';
+import ProductListScreen from './screens/ProductListScreen';
 import ProductScreen from './screens/ProductScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import RegisterScreen from './screens/RegisterScreen';
@@ -95,7 +96,8 @@ function App() {
               <Route path='/order/:id' component={OrderScreen}></Route>    
               <Route path='/orderhistory' component={OrderHistoryScreen}></Route>
               <PrivateRoute path='/profile' component={ProfileScreen}></PrivateRoute>  
-              {/* <AdminRoute path='/profile' component={ProfileScreen}></AdminRoute>                          */}
+              <AdminRoute path='/productlist' component={ProductListScreen}></AdminRoute> 
+                                     
               <Route path="/" component={HomeScreen} exact></Route>              
             </main>      
             <footer className='row center'>
