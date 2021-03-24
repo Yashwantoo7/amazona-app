@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { createProduct, listProducts } from '../actions/productActions';
+import { createProduct, deleteProduct, listProducts } from '../actions/productActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-import { PRODUCT_CREATE_RESET } from '../constants/productConstants';
+import { PRODUCT_CREATE_RESET, PRODUCT_DELETE_RESET } from '../constants/productConstants';
 
 const ProductListScreen = (props) => {
     const productList = useSelector(state=>state.productList);
@@ -15,16 +15,25 @@ const ProductListScreen = (props) => {
         
     const dispatch = useDispatch();
 
+    const productDelete = useSelector(state=>state.productDelete);
+    const {loading:loadingDelete,success:successDelete,error:errorDelete}=productDelete;
+
     useEffect(()=>{
         if(successCreate){
             dispatch({type: PRODUCT_CREATE_RESET});
             props.history.push(`/product/${createdProduct._id}/edit`)
         }
+        if(successDelete){
+            dispatch({type: PRODUCT_DELETE_RESET});
+        }
         dispatch(listProducts());
-    },[dispatch,createdProduct, props.history, successCreate]);
+    },[dispatch,createdProduct, props.history, successCreate,successDelete]);
 
-    const deleteHandler=()=>{
-        //todo: dispatch delete action
+
+    const deleteHandler=(product)=>{
+        if(window.confirm('Are you sure to delete?')){
+            dispatch(deleteProduct(product._id));
+        }
     }
     const createHandler=()=>{
         dispatch(createProduct());
@@ -37,8 +46,12 @@ const ProductListScreen = (props) => {
                     Create Product
                 </button>
             </div>
+            {loadingDelete && <LoadingBox></LoadingBox>}
+            {errorDelete && <MessageBox variant='danger'>{errorDelete}</MessageBox>}
+
             {loadingCreate && <LoadingBox></LoadingBox>}
             {errorCreate && <MessageBox variant='danger'>{errorCreate}</MessageBox>}
+
             {loading? <LoadingBox></LoadingBox>
             :
             error?<MessageBox variat='danger'>{error}</MessageBox>
