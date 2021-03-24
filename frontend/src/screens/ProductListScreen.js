@@ -20,7 +20,7 @@ const ProductListScreen = (props) => {
             dispatch({type: PRODUCT_CREATE_RESET});
             props.history.push(`/product/${createdProduct._id}/edit`)
         }
-        dispatch(listProducts);
+        dispatch(listProducts());
     },[dispatch,createdProduct, props.history, successCreate]);
 
     const deleteHandler=()=>{

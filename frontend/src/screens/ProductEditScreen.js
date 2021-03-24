@@ -1,3 +1,4 @@
+import Axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { detailsProduct, updateProduct } from '../actions/productActions';
@@ -47,6 +48,29 @@ const ProductEditScreen = (props) => {
         dispatch(updateProduct({_id:productId,
             name,price,image,category,brand,countInStock,description}))
     }
+    const [loadingUpload,setLoadingUpload] = useState(false);
+    const [errorUpload, setErrorUpload] = useState('');
+
+    const userSignin = useSelector(state=>state.userSignin);
+    const {userInfo} = userSignin;
+
+    const uploadFileHandler=async (e)=>{
+        const file = e.target.files[0];
+        const bodyFormData = new FormData();
+        bodyFormData.append('image',file);
+        setLoadingUpload(true);
+        try{
+            const {data} = await Axios.post('/api/uploads',bodyFormData,{
+                headers:{'Content-Type':'multipart/form-data',
+                        Authorization: `Bearer ${userInfo.token}`}
+            })
+            setImage(data);
+            setLoadingUpload(false);
+        }catch(error){
+            setErrorUpload(error);
+            setLoadingUpload(false);
+        }
+    }
     return (
         <div>
             <form className='form' onSubmit={submitHandler}>
@@ -77,6 +101,14 @@ const ProductEditScreen = (props) => {
                     <input id='image' type='text' placeholder='Enter image' 
                         value={image} onChange={(e)=>setImage(e.target.value)}>
                     </input>
+                </div>
+                <div>
+                    <label htmlFor='imageFile'>Image File</label>
+                    <input type='file' id='imageFile' 
+                    label='Choose Image' onChange={uploadFileHandler}>
+                    </input>
+                    {loadingUpload && <LoadingBox></LoadingBox>}
+                    {errorUpload && <MessageBox variant='danger'>{errorUpload}</MessageBox>}
                 </div>                
                 <div>
                     <label htmlFor='category'>Category</label>
