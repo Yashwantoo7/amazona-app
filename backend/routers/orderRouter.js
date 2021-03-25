@@ -80,4 +80,13 @@ orderRouter.put(
     })
 )
 
+orderRouter.delete('/:id',isAuth, isAdmin, expressAsyncHandler(async(req,res)=>{
+    const order = await Order.findById(req.params.id);
+    try{
+        const deleteOrder = await order.remove();
+        res.send({message:'Order Deleted', order: deleteOrder});
+    }catch(error){
+        res.status(404).send({message:'Order Not Found'})
+    }
+}))
 export default orderRouter;
