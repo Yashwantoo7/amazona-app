@@ -64,9 +64,7 @@ const OrderScreen = (props) => {
     return loading ?(<LoadingBox></LoadingBox>):
     error?(<MessageBox variant='danger'>{error}</MessageBox>):
     (
-        <div>
-            {loadingDeliver &&<LoadingBox></LoadingBox>}
-            {errorDeliver &&<MessageBox variant='danger'>{errorDeliver}</MessageBox>}
+        <div>            
             <h1>Order {order._id}</h1> 
             <div className='row top'>
                 <div className='col-2'>
@@ -170,6 +168,8 @@ const OrderScreen = (props) => {
                             )}    
                             {userInfo.isAdmin && order.isPaid && !order.isDelivered &&(
                                 <li>
+                                    {loadingDeliver &&<LoadingBox></LoadingBox>}
+                                    {errorDeliver &&<MessageBox variant='danger'>{errorDeliver}</MessageBox>}
                                     <button type='button' className='primary block' onClick={deliverHandler}>
                                         Deliver Order
                                     </button>
