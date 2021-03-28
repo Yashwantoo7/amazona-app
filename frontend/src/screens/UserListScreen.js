@@ -3,8 +3,9 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import {useDispatch, useSelector} from 'react-redux';
 import { deleteUser, listUsers } from '../actions/userActions';
+import {USER_DETAILS_RESET} from '../constants/userConstants.js';
 
-const UserListScreen = () => {
+const UserListScreen = (props) => {
     const dispatch = useDispatch();
 
     const userList = useSelector(state=>state.userList);
@@ -15,6 +16,9 @@ const UserListScreen = () => {
     
     useEffect(()=>{
         dispatch(listUsers());
+        dispatch({
+            type:USER_DETAILS_RESET
+        })
     },[dispatch,successDelete]);
 
     const deleteHandler=(user)=>{
@@ -54,7 +58,7 @@ const UserListScreen = () => {
                                     <td>{user.isSeller?'YES':'NO'}</td>
                                     <td>{user.isAdmin?'YES':'NO'}</td>
                                     <td>
-                                        <button className='small' type='button' >Edit</button> 
+                                        <button type='button' className='small' onClick={()=>props.history.push(`/user/${user._id}/edit`)}>Edit</button>
                                         <button className='small' type='button' onClick={()=>deleteHandler((user))}>Delete</button>
                                     </td>
                                 </tr>
