@@ -28,7 +28,7 @@ const CartScreen = (props) => {
         <div className='row top'>
             <div className='col-2'>
                 <h1>Shopping Cart</h1>
-                {error!=='' &&<MessageBox variant='danger'>{error}</MessageBox>}
+                {error &&<MessageBox variant='danger'>{error}</MessageBox>}
                 {cartItems.length===0?<MessageBox>
                     Cart is empty. <Link to='/'>Go Shopping</Link>
                 </MessageBox>:
